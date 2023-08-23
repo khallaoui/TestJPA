@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content1">
+	<h2>Liste des articles</h2>
+	
+	<p>
+		<a th:href="@{/addart}">Ajouter un article</a>
+	</p>
+	
+		<table class="table">
+		<tr><th>#</th> <th>Nom de l'article</th> <th>Description</th><th>Prix</th> <th>Actions</th> </tr>
+		<tr th:each="art : ${articles}">
+			<td></td>
+			<td th:text="${art.libelle}"></td>
+			<td th:text="${art.description}"></td>
+			<td th:text="${art.prix}"></td>
+			<td sec:authorize="hasRole('admin')"><a th:href="@{editart/{id_art}(id_art=${art.id})}">Modifier</a> | 
+			<a th:href="@{deleteart/{id}(id=${art.id})}">Supprimer</a> </td>
+		</tr>
+		</table>
+	
+	</div>
+
+</body>
+</html>

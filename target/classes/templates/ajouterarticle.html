@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	
+      layout:decorate="/layouts/_layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content1">
+<h2>Ajouter un nouvel article</h2>
+	<form th:action="@{/PostAddart}" method="post" th:object="${article}">
+		<table>
+		
+		<tr> <td>Nom de l'article</td> 
+			<td>
+				<input type="text" th:field="*{libelle}"  />
+				<!-- afficher le message d'erreur au cas ou la contrainte n'est pas respecté  -->
+				<span th:errors="*{libelle}"></span>
+			</td>
+		</tr>
+		<tr> 
+			<td>Prix</td> 
+			<td>
+				<input type="text" th:field="*{prix}"  />
+				<span th:errors="*{prix}"></span>
+			</td>
+		</tr>
+		<tr>
+			 <td>Description de l'article</td> 
+			 <td>
+			 	<input type="text" th:field="*{description}"  />
+			 	<!-- le message d'erreur au cas ou la valeur de description ne respecte pas les contraintes indiquées dans entities -->
+			 	<span th:errors="*{description}"></span>
+			 </td>
+		 </tr>	
+			<tr><td colspan="2"><input type="submit" value="Ajouter" class="btn btn-primary" /></td></tr>
+		</table>
+		
+	</form>
+</div>
+</body>
+</html>
